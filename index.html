@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Valentine 💘</title>
+<style>
+body{
+  margin:0;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  height:100vh;
+  background:radial-gradient(circle,#ffd1dc,#ff5fa2);
+  font-family:Arial,sans-serif;
+  overflow:hidden;
+}
+.card{
+  background:white;
+  padding:40px;
+  border-radius:25px;
+  text-align:center;
+  box-shadow:0 30px 60px rgba(0,0,0,.3);
+  position:relative;
+}
+h1{margin-bottom:30px;}
+button{
+  border:none;
+  border-radius:16px;
+  font-weight:bold;
+  cursor:pointer;
+}
+#yes{
+  padding:8px 14px;
+  font-size:14px;
+  background:#ff4d8d;
+  color:white;
+}
+#no{
+  padding:25px 40px;
+  font-size:24px;
+  background:#ddd;
+  position:absolute;
+}
+.reveal{
+  font-size:26px;
+  animation:pop 1.8s ease forwards;
+}
+@keyframes pop{
+  from{opacity:0;transform:scale(.7);}
+  to{opacity:1;transform:scale(1);}
+}
+.confetti{
+  position:fixed;
+  width:10px;height:10px;
+  animation:fall 4s linear forwards;
+}
+@keyframes fall{
+  from{top:-10px;transform:rotate(0);}
+  to{top:110vh;transform:rotate(720deg);}
+}
+</style>
+</head>
+
+<body>
+<div class="card" id="card">
+  <h1>Will you be my Valentine? 💖</h1>
+  <button id="yes">Yes</button>
+  <button id="no">No</button>
+</div>
+
+<script>
+const no=document.getElementById("no");
+no.addEventListener("mouseover",()=>{
+  no.style.left=Math.random()*80+"vw";
+  no.style.top=Math.random()*80+"vh";
+});
+
+const audio=new Audio("https://www.myinstants.com/media/sounds/careless-whisper.mp3");
+
+document.getElementById("yes").onclick=()=>{
+  audio.play();
+  card.innerHTML="<div class='reveal'>I had a feeling you would say yes 👉🏽👈🏽💘<br><br>This moment is officially ✨romantic✨</div>";
+  for(let i=0;i<80;i++){
+    let c=document.createElement("div");
+    c.className="confetti";
+    c.style.left=Math.random()*100+"vw";
+    c.style.background=`hsl(${Math.random()*360},100%,50%)`;
+    document.body.appendChild(c);
+  }
+};
+</script>
+</body>
+</html>
